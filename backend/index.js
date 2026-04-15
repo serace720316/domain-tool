@@ -3,7 +3,7 @@ const dns = require('dns').promises; // 使用 promise 版本
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 
 // 1. 啟動 CORS，讓你的 Vue 前端（5173 埠）可以跨網域呼叫這個 API
 app.use(cors());
