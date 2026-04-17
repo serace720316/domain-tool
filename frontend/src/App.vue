@@ -1,3 +1,8 @@
+// 測試方法:
+// 終端機到目錄 D:\VS Code\domain-tool\frontend\
+// 執行 npm run dev
+// 瀏覽器開啟 http://localhost:5173/
+
 <template>
   <div class="app-container">
     <nav class="sidebar">
@@ -36,13 +41,14 @@
             <thead>
               <tr>
                 <th>域名</th>
-                <th>IP 位址</th>
+                <th>CNAME (別名)</th><th>IP 位址</th>
                 <th>狀態</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in results" :key="item.domain">
                 <td>{{ item.domain }}</td>
+                <td class="cname-text">{{ item.cname }}</td>
                 <td class="ip-text">{{ item.ip }}</td>
                 <td>
                   <span :class="['status-tag', item.status]">{{ item.status }}</span>
@@ -85,7 +91,7 @@ const handleResolve = async () => {
 
     // 自動
     const apiUrl = import.meta.env.DEV 
-  ? 'http://localhost:3000/api/resolve' 
+  ? 'http://localhost:4000/api/resolve' 
   : '/api/resolve';
     const response = await axios.post(apiUrl, { domains });
 
@@ -129,6 +135,7 @@ textarea { width: 100%; height: 200px; padding: 15px; border: 1px solid #ddd; bo
 table { width: 100%; border-collapse: collapse; }
 th { text-align: left; padding: 12px; border-bottom: 2px solid #eee; color: #666; }
 td { padding: 12px; border-bottom: 1px solid #eee; }
+.cname-text { font-family: monospace; color: #3498db; word-break: break-all; /* 防止長域名撐開表格 */ font-size: 0.9rem; }
 .ip-text { font-family: monospace; color: #e67e22; }
 .status-tag { padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; }
 .status-tag.Success { background: #e8f5e9; color: #2e7d32; }
