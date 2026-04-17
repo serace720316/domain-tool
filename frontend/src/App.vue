@@ -6,7 +6,7 @@
 <template>
   <div class="app-container">
     <nav class="sidebar">
-      <div class="logo">Tony工具箱</div>
+      <div class="logo">Tony工具箱Ver1.1</div>
       <ul>
         <li :class="{ active: currentTab === 'dns' }" @click="currentTab = 'dns'">
           🌐 大量域名解析
